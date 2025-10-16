@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Цитата — Артур Эддингтон (1927)</title>
+  <style>
+    :root{
+      --bg:#0b0d0f;
+      --card:#0f1316;
+      --muted:#9aa3ad;
+      --accent:#9be7ff;
+      --glass: rgba(255,255,255,0.03);
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--bg),#040505 120%);
+      color:#e6eef3;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans";
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    .card{
+      max-width:880px;
+      width:100%;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;
+      padding:48px 48px 40px 48px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(6px);
+    }
+    blockquote{
+      margin:0 0 20px 0;
+      font-size:1.125rem;
+      line-height:1.6;
+      color: #e7f1f6;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      letter-spacing:0.2px;
+      white-space:pre-line;
+    }
+    cite{
+      display:block;
+      margin-top:18px;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+    .meta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:8px;
+    }
+    .year{ color:var(--muted); font-size:0.9rem; }
+    .tools{ display:flex; gap:8px; }
+    .btn{
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.03);
+      color:var(--muted);
+      padding:8px 12px;
+      border-radius:8px;
+      font-size:0.9rem;
+      cursor:pointer;
+      transition:transform .12s ease, background .12s ease, color .12s ease;
+    }
+    .btn:active{ transform:scale(.98); }
+    .btn:hover{ color:var(--accent); }
+    .quote-mark{
+      font-size:3rem;
+      line-height:1;
+      color: rgba(155,231,255,0.06);
+      position:relative;
+      top:6px;
+      margin-right:10px;
+    }
+    .content-wrap{ display:flex; align-items:flex-start; }
+    @media (max-width:600px){
+      .card{ padding:28px; }
+      blockquote{ font-size:1rem; }
+      .quote-mark{ font-size:2.4rem; }
+    }
+    .small{ font-size:0.86rem; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <div class="content-wrap">
+      <div class="quote-mark">“</div>
+      <blockquote id="quote">Я стою на пороге комнаты и собираюсь войти. Сделать это непросто.
+
+Для начала нужно протиснуться сквозь толщу атмосферы. Давящий силой в один килограмм на каждый квадратный сантиметр моего тела. Я должен приземлиться на доску, вращающуюся вокруг солнца со скоростью тридцать два километра в секунду — если я коснусь её хоть на долю секунды раньше или позже, она успеет отдалиться от меня на несколько километров. Всё это я должен делать, свешиваясь с круглой планеты головой по направлению к космосу, в то время как эфирный ветер, дующий с неизвестной науке скоростью, пронизывает все пустоты моего тела.
+
+Доска вовсе не из цельного материала. Встать на неё — всё равно что стать на мушиный рой. Не пройду ли я сквозь её? Нет. Если я попытаюсь сделать это, я столкнусь с одной из мух, и она подбросит меня вверх. Я снова падаю, и ещё одна муха подбрасывает меня, и так раз за разом.
+
+Я могу надеяться на то, что в итоге сохраню относительную неподвижность. Но, увы, если я провалюсь сквозь пол или меня слишком сильно подбросит к потолку, то это случится не вопреки законам природы, а по редкому совпадению. И это лишь часть незначительных сложностей.
+
+Мне следует взглянуть на проблему в четырёх измерениях, учесть, что она касается пересечения моей мировой линии с линией доски. К тому же необходимо определить, в каком направлении увеличивается энтропия мира, чтобы мой проход за порог оказался входом, а не выходом.
+
+В самом деле, проще верблюду пройти сквозь игольное ушко, чем учёному пройти в дверь. И не важно, будь это дверь в конюшню или в церковь, возможно, учёному следовало бы просто признать себя обычным человеком и войти, не дожидаясь, пока все трудности, связанные с истинно научным способом прохождения в дверь, будут разрешены.</blockquote>
+    </div>
+    <div class="meta">
+      <div>
+        <cite>Артур Эддингтон</cite>
+        <div class="year">1927</div>
+      </div>
+      <div class="tools">
+        <button class="btn" id="copyBtn">Скопировать текст</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const copyBtn = document.getElementById('copyBtn');
+    copyBtn.addEventListener('click', async () => {
+      const text = document.getElementById('quote').innerText;
+      try{
+        await navigator.clipboard.writeText(text);
+        copyBtn.textContent = 'Скопировано';
+        setTimeout(()=> copyBtn.textContent = 'Скопировать текст', 1300);
+      }catch(e){
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); copyBtn.textContent='Скопировано'; }catch(e){ alert('Не удалось скопировать.'); }
+        ta.remove(); setTimeout(()=> copyBtn.textContent = 'Скопировать текст',1300);
+      }
+    });
+  </script>
+</body>
+</html>

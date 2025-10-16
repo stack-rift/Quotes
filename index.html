@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
   <title>Цитата — Артур Эддингтон (1927)</title>
   <style>
     :root{
@@ -43,6 +43,7 @@
       font-family: Georgia, 'Times New Roman', Times, serif;
       letter-spacing:0.2px;
       white-space:pre-line;
+      word-break:break-word;
     }
     cite{
       display:block;
@@ -56,9 +57,10 @@
       justify-content:space-between;
       gap:12px;
       margin-top:8px;
+      flex-wrap:wrap;
     }
     .year{ color:var(--muted); font-size:0.9rem; }
-    .tools{ display:flex; gap:8px; }
+    .tools{ display:flex; gap:8px; flex-wrap:wrap; }
     .btn{
       background:var(--glass);
       border:1px solid rgba(255,255,255,0.03);
@@ -78,12 +80,20 @@
       position:relative;
       top:6px;
       margin-right:10px;
+      flex-shrink:0;
     }
     .content-wrap{ display:flex; align-items:flex-start; }
     @media (max-width:600px){
-      .card{ padding:28px; }
-      blockquote{ font-size:1rem; }
-      .quote-mark{ font-size:2.4rem; }
+      body{ padding:20px; align-items:flex-start; }
+      .card{ padding:24px; box-shadow:none; border-radius:10px; }
+      blockquote{ font-size:1rem; line-height:1.5; }
+      .quote-mark{ font-size:2.4rem; margin-right:8px; }
+      .btn{ padding:10px 14px; font-size:0.95rem; }
+    }
+    @media (max-width:400px){
+      blockquote{ font-size:0.95rem; }
+      .btn{ width:100%; text-align:center; }
+      .tools{ flex-direction:column; width:100%; }
     }
     .small{ font-size:0.86rem; color:var(--muted); }
   </style>
@@ -111,8 +121,10 @@
       </div>
       <div class="tools">
         <button class="btn" id="copyBtn">Скопировать текст</button>
+        <button class="btn" id="downloadBtn">Скачать HTML</button>
       </div>
     </div>
+    <div style="margin-top:14px;" class="small">Темная минималистичная вёрстка. Нажми «Скопировать» или скачай файл.</div>
   </main>
 
   <script>
@@ -129,6 +141,16 @@
         try{ document.execCommand('copy'); copyBtn.textContent='Скопировано'; }catch(e){ alert('Не удалось скопировать.'); }
         ta.remove(); setTimeout(()=> copyBtn.textContent = 'Скопировать текст',1300);
       }
+    });
+
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.addEventListener('click', ()=>{
+      const html = '<!doctype html>'+document.documentElement.outerHTML;
+      const blob = new Blob([html], {type:'text/html;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'eddington-quote.html'; document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
     });
   </script>
 </body>
